@@ -1,3 +1,16 @@
+window.intercomSettings = {
+  app_id: "...",
+  user_id: "419",
+  name: "Juanma Molina", // This,
+  email: "juanma@reply.ai", // this
+  created_at: 1481805899,
+  organization: "Test 2019.1", // and this
+  support_plan: "TIER1",
+  widget: {
+    "activator": "#Intercom"
+  }
+};
+
 (function(window, document, kustomer, undefined) {
   window.Kustomer = kustomer;
   kustomer._q = [];
