@@ -41,18 +41,6 @@ window.intercomSettings = {
 // Add your API Key here
 Kustomer.init('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZGY2YzI1MDgwNTdkMDA5NWU5ZTJiNyIsInVzZXIiOiI1ZWRmNmMyNTM5NTMxNTAwMTk1NjYyZDEiLCJvcmciOiI1ZGJiNTE5NzczMDQ0MDAwMWJkMmEyOGEiLCJvcmdOYW1lIjoienp6LWJyeWNlLWdlcnRydWRlIiwidXNlclR5cGUiOiJtYWNoaW5lIiwicG9kIjoicHJvZDEiLCJyb2xlcyI6WyJvcmciLCJvcmcuYWRtaW4iLCJvcmcudHJhY2tpbmciLCJvcmcucGVybWlzc2lvbiIsIm9yZy51c2VyIl0sImF1ZCI6InVybjpjb25zdW1lciIsImlzcyI6InVybjphcGkiLCJzdWIiOiI1ZWRmNmMyNTM5NTMxNTAwMTk1NjYyZDEifQ.kyT2UVZA9kN1QzsHb1LIB-kgSuQ8SScL4rZhYU39tC4');
 
-Kustomer.describe('conversation', {
-  email: `${window.intercomSettings.email}`,
-});
-
-Kustomer.describe('conversation', {
-  custom: {
-    platformStr: `reply.ai`,
-    onWhichPageStr: `${document.title}`,
-    replyAiOrgStr: `${window.intercomSettings.organization}`
-  }
-});
 
 Kustomer.start({
-  form: "5ee791afd6639b0095d8c629"
 });
