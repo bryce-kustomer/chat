@@ -11,6 +11,26 @@
     Chating!
 </body>
 
-<script src="reply-ai-chat.js"></script>
+<script
+  src="https://cdn.kustomerapp.com/chat-web/widget.js"
+  data-kustomer-api-key='YOUR_API_KEY'
+></script>
+<script>
+  Kustomer.start({
+    brandId: '5daf785b124be4f2960c9a3e'
+  });
+  Kustomer.describe('customer', {
+    custom: {
+      onWhichPageMarketingStr: `${document.title}`,
+      previousPageStr: `${document.referrer}`
+    }
+  });
 
+  Kustomer.describe('conversation', {
+    custom: {
+      platform: `kustomer.com`,
+      onWhichPageStr: `${document.title}`
+    }
+  });
+</script>
 </html>
