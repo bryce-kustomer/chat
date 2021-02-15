@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-<html lang='en' dir='ltr'>
+<html lang="en" dir="ltr">
 
 <head>
-  <meta charset='utf-8'>
-  <title>Kustomer.com</title>
+  <meta charset="utf-8">
+  <title>Chat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <h1>Kustomer.com chatbot test</h1>
+  <div class="right">
+
+    <p class="leftParagraph"><a href="/kchat/v1">V1</a></p>
+  </div>
+  <div class="left">
+    <p class="rightParagraph"><a href="/kchat/v2">V2</a></p>
+  </div>
 </body>
 
-<script
-  src='https://cdn.kustomerapp.com/chat-web/widget.js'
-  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU'
-></script>
-<script>
-
-  Kustomer.describe('customer', {
-    custom: {
-      onWhichPageMarketingStr: `${document.title}`,
-      previousPageStr: `${document.referrer}`
-    }
-  });
-
-  Kustomer.describe('conversation', {
-    custom: {
-      platform: `kustomer.com`,
-      onWhichPageStr: `${document.title}`
-    }
-  });
-
-  Kustomer.start({
-    form: '5ff477e5a9109b0019c836cb',
-      brandId: '5daf785b124be4f2960c9a3e'
-  });
-
-
-</script>
 </html>
