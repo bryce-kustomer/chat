@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Kustomer.com chat</title>
+</head>
+
+<body>
+    <h1>Kustomer.com Chat</h1>
+</body>
+
+<script
+  src="https://cdn.kustomerapp.com/chat-web/widget.js"
+  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZWEwNTI4MGU5NWQxMDA5NjQxNjBmYiIsInVzZXIiOiI1ZmVhMDUyODBmZjgxZmVmMjI1YzU1NTAiLCJvcmciOiI1ZGJiNTE5NzczMDQ0MDAwMWJkMmEyOGEiLCJvcmdOYW1lIjoienp6LWJyeWNlLWdlcnRydWRlIiwidXNlclR5cGUiOiJtYWNoaW5lIiwicG9kIjoicHJvZDEiLCJyb2xlcyI6WyJvcmcudHJhY2tpbmciXSwiYXVkIjoidXJuOmNvbnN1bWVyIiwiaXNzIjoidXJuOmFwaSIsInN1YiI6IjVmZWEwNTI4MGZmODFmZWYyMjVjNTU1MCJ9.sXpvIqaKam9VGKPn6h5zVN1C5aOYlajc2kxEL_cnKnI'
+></script>
+<script>
+  Kustomer.start({
+    brandId: '5dbb519bda0045001bbf8adc'
+  });
+</script>
+
+</html>
