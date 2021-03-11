@@ -6,9 +6,7 @@
   <title>Chatbot testing</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <script>
-
-  (function () {
+  <script>(function () {
     function getUrlParam(parameter, defaultvalue) {
       var urlparameter = defaultvalue;
       if (window.location.href.indexOf(parameter) > -1) {
@@ -31,7 +29,7 @@
       script.src = 'https://cdn.kustomerapp.com/chat-web/widget.js';
       script.setAttribute(
        "data-kustomer-api-key",
-"API"
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU"
       );
       var body = document.getElementsByTagName('body')[0];
       body.appendChild(script);
@@ -43,14 +41,11 @@
         }, () => {
           let newConvoCreated = false;
           Kustomer.addListener('onOpen', () => {
-
             Kustomer.getOpenConversations((conversations, error) => {
-
               if (error) {
                 console.error(error);
                 return;
               }
-
               if (!conversations.length && !newConvoCreated) {
                 Kustomer.createConversation({
                   assistantId: '5ff477e5a9109b0019c836cb',
@@ -60,7 +55,6 @@
                 });
               }
             });
-
             Kustomer.describeCustomer({
               customAttributes: {
                 onWhichPageMarketingStr: `${document.title}`,
@@ -69,14 +63,11 @@
             }, function(callbackResponse, error) {
               console.log('Updated information about the customer');
             });
-
-
           });
         });
       });
     }
-  })();
-</script>
+  })();</script>
 </head>
 
 <body>
