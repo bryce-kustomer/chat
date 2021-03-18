@@ -1,88 +1,24 @@
 <!DOCTYPE html>
-<html lang='en' dir='ltr'>
-
-<head>
-  <meta charset='utf-8'>
-  <title>Markting chat - test</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <script>(function () {
-      function getUrlParam(parameter, defaultvalue) {
-        var urlparameter = defaultvalue;
-        if (window.location.href.indexOf(parameter) > -1) {
-          urlparameter = getUrlVars()[parameter];
-        }
-        return urlparameter;
-      }
-      function getUrlVars() {
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-          vars[key] = value;
-        });
-        return vars;
-      }
-      var refUrl = getUrlParam('refUrl') || '';
-      if (refUrl.indexOf('ring.com') == -1) {
-
-
-        var script = document.createElement('script');
-        script.src = 'https://cdn.kustomerapp.com/chat-web/widget.js';
-        script.setAttribute(
-         "data-kustomer-api-key",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU"
-        );
-        var body = document.getElementsByTagName('body')[0];
-        body.appendChild(script);
-        window.addEventListener('kustomerLoaded', function () {
-
-
-          Kustomer.start({
-            brandId: '600722af36009ee6f15194a4'
-          }, () => {
-            let newConvoCreated = false;
-            Kustomer.addListener('onOpen', () => {
-              Kustomer.getOpenConversations((conversations, error) => {
-                if (error) {
-                  console.error(error);
-                  return;
-                }
-                if (!conversations.length && !newConvoCreated) {
-                  Kustomer.createConversation({
-                    assistantId: '5ff477e5a9109b0019c836cb',
-                  }, () => {
-                    console.log('convo created!');
-                    newConvoCreated = true;
-                  });
-                }
-              });
-              Kustomer.describeCustomer({
-                customAttributes: {
-                  onWhichPageMarketingStr: `${document.title}`,
-                  previousPageStr: `${document.referrer}`
-                }
-              }, function(callbackResponse, error) {
-                console.log('Updated information about the customer');
-              });
-            });
-          });
-        });
-      }
-    })();</script>
-</head>
-
-<body>
-  <h1>Marketing chat</h1>
-</body>
-
-
-
-
-
-
-
-
-
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<h1>Marketing chat</h1>
+  </body>
+  <script
+  src="https://cdn.kustomerapp.com/chat-web/widget.js"
+  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU'
+></script>
+<script>
+Kustomer.start({
+  brandId: '602585ec0546eb60aff536d0'
+}, function () {
+  console.log('Kustomer Chat Widget started with options!');
+  Kustomer.open();
+  Kustomer.createConversation()
+});
 
 </script>
-
 </html>
