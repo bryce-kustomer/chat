@@ -3,21 +3,39 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
   <title>Client chat test</title>
 </head>
 
 <body>
-  <h1>Thred-up chat test</h1>
+  <h1>Elementor chat test</h1>
 </body>
-<script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDM0YzM4ZDkxZmM1MDA5NWExNWVkOCIsInVzZXIiOiI2MGQzNGMzNDFhMDRlOTAwMTM1ZDI5ODIiLCJvcmciOiI1Y2M4OTcxNGM2MmNmNTAwMTM1NWVlNTIiLCJvcmdOYW1lIjoidGhyZWR1cCIsInVzZXJUeXBlIjoibWFjaGluZSIsInBvZCI6InByb2QxIiwicm9sZXMiOlsib3JnLnRyYWNraW5nIl0sImV4cCI6MTYyNDU0NjczOSwiYXVkIjoidXJuOmNvbnN1bWVyIiwiaXNzIjoidXJuOmFwaSIsInN1YiI6IjYwZDM0YzM0MWEwNGU5MDAxMzVkMjk4MiJ9.YD7ChtL6rkfh_XSORMyYxlgPyCxxK_ECFLuR-d0YMMs'>
-</script>
-<script>
-  Kustomer.start({
-  
-  });
+<script type="text/javascript">
+  var ElementorKustomer = {
+    onKustomerReady: () => {
+      if (!window.Kustomer) {
+        return setTimeout(ElementorKustomer.onKustomerReady, 100);
+      }
+      ElementorKustomer.setKustomerParams();
+    },
+    setKustomerParams: () => {
+      window.Kustomer.start({}, () => {
+        window.Kustomer.describeCustomer({
+          attributes: {
+            emails: ["ido@elementor.com"]
+          },
+          customAttributes: {
+            cloudPriorityStr: "Priority"
+          }
+        }, (callbackResponse, error) => {
+          if (error) {
+            console.log(error);
+          }
+        });
+      });
+    }
+  };
+  ElementorKustomer.onKustomerReady();
 </script>
 
 </html>
