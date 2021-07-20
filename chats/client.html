@@ -11,35 +11,14 @@
 <body>
   <h1>Thred-up chat test</h1>
 </body>
-<script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDM0YzM4ZDkxZmM1MDA5NWExNWVkOCIsInVzZXIiOiI2MGQzNGMzNDFhMDRlOTAwMTM1ZDI5ODIiLCJvcmciOiI1Y2M4OTcxNGM2MmNmNTAwMTM1NWVlNTIiLCJvcmdOYW1lIjoidGhyZWR1cCIsInVzZXJUeXBlIjoibWFjaGluZSIsInBvZCI6InByb2QxIiwicm9sZXMiOlsib3JnLnRyYWNraW5nIl0sImV4cCI6MTYyNDU0NjczOSwiYXVkIjoidXJuOmNvbnN1bWVyIiwiaXNzIjoidXJuOmFwaSIsInN1YiI6IjYwZDM0YzM0MWEwNGU5MDAxMzVkMjk4MiJ9.YD7ChtL6rkfh_XSORMyYxlgPyCxxK_ECFLuR-d0YMMs'>
-</script>
-<script type="text/javascript">
-  var ElementorKustomer = {
-    onKustomerReady: () => {
-      if (!window.Kustomer) {
-        return setTimeout(ElementorKustomer.onKustomerReady, 100);
-      }
-      ElementorKustomer.setKustomerParams();
-    },
-    setKustomerParams: () => {
-      window.Kustomer.start({}, () => {
-        window.Kustomer.describeCustomer({
-          attributes: {
-            emails: ["ido@elementor.com"]
-          },
-          customAttributes: {
-            cloudPriorityStr: "Priority"
-          }
-        }, (callbackResponse, error) => {
-          if (error) {
-            console.log(error);
-          }
-        });
-      });
-    }
-  };
-  ElementorKustomer.onKustomerReady();
+<script
+  src="https://cdn.kustomerapp.com/chat-web/widget.js"
+  data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjZhNWEyMjBlNDQ0MDA5NWMyODZlMiIsInVzZXIiOiI2MGY2YTU5ZDM4ZWJhYTAwMTI0NzJiYjQiLCJvcmciOiI1YjY4ZDM4ZTcxMzEzYjFhZmNhM2ZkZmMiLCJvcmdOYW1lIjoicGFkZGxlLXNhbmRib3giLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNjBmNmE1OWQzOGViYWEwMDEyNDcyYmI0In0.l_-bgMOrcs3voBNEV48bgMHKbvBtfOUZStKoXhyf7Bc'
+></script>
+<script>
+  Kustomer.start({
+    brandId: '5daf78da124be4f2960ca922'
+  });
 </script>
 
 </html>
