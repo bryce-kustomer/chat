@@ -9,16 +9,20 @@
 </head>
 
 <body>
-  <h1>IT Support Chat</h1>
+  <h1>Classification Chat</h1>
 </body>
 <script
   src="https://cdn.kustomerapp.com/chat-web/widget.js"
   data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTUxN2Q3MjlmNTdmMDA5NWQ1OTRlZiIsInVzZXIiOiI2MTU1MTdkMjY3NThmMDAwMTlmMjM5YjMiLCJvcmciOiI1YzJkNjg2MmYyNGNiZjAwMWFlZDU0ZWEiLCJvcmdOYW1lIjoia3VzdG9tZXItaXQiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNjE1NTE3ZDI2NzU4ZjAwMDE5ZjIzOWIzIn0.xrzmoupzs-yw3gB8EQ14-7yOVTuKP9fXr4pYMUXmDsA'
 ></script>
 <script>
-  Kustomer.start({
-    brandId: '5daf78fb124be4f2960cad1a'
-  });
+Kustomer.start({
+    brandId: '5daf78fb124be4f2960cad1a',
+  assistantId: '614c8fca81d1ae00198dd93e'
+}, function () {
+  console.log('Kustomer Chat Widget started with options!');
+  Kustomer.open();
+});
 </script>
 
 </html>
