@@ -17,14 +17,14 @@
 Kustomer.start({
   assistantId: '64adfe4361c5242329961d7c'
 }, function () {
- Kustomer.describeConversation({
-            customAttributes: {
-                chatPageStr: "".concat(document.title),
-                chatPreviousPageStr: "".concat(document.referrer)
-            }
-        }, function (callbackResponse, error) {
-            console.log('Updated information about the customer');
-        });
+Kustomer.addListener('onConversationCreate', (res) => {
+  Kustomer.describeConversation({
+    conversationId: res.conversationId,
+    customAttributes: {
+      some_custom_attribute: 'some_custom_value'
+    }
+  });
+});
 });
 
 </script>
