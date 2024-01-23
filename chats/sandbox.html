@@ -1,21 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>Sandbox chat test</title>
-  </head>
-  <body>
-<h1>Sandbox chat test</h1>
-  </body>
-  <script
-    src="https://cdn.kustomerapp.com/chat-web/widget.js"
-    data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTJhZjBmMjhhOTljMDA4ZWVlZDAwZSIsInVzZXIiOiI2MDUyYWYwYTY4YmQwNmNiNzc5NzJiMDIiLCJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInVzZXJUeXBlIjoibWFjaGluZSIsInBvZCI6InByb2QxIiwicm9sZXMiOlsib3JnLnRyYWNraW5nIl0sImF1ZCI6InVybjpjb25zdW1lciIsImlzcyI6InVybjphcGkiLCJzdWIiOiI2MDUyYWYwYTY4YmQwNmNiNzc5NzJiMDIifQ.w22RngUTQ7it7TmeMXlmyS8w71YAUoHoKW52b3XK34Q'
-  ></script>
-  <script>
-    Kustomer.start({
-      brandId: '643df98afbe36922a05b7adb'
+<html>
+<head>
+    <title>Your Website Title</title>
+    <style>
+        /* Popup styling */
+        .welcome-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            z-index: 1000;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+<div class="welcome-popup">
+    <p>Welcome to our website!</p>
+    <button id="close-popup">Close</button>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+    var popup = document.querySelector('.welcome-popup');
+    var overlay = document.querySelector('.overlay');
+    var closeButton = document.getElementById('close-popup');
+
+    // Function to show the popup
+    function showPopup() {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+    }
+
+    // Function to hide the popup
+    function closePopup() {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+
+    // Event listener for the close button
+    closeButton.addEventListener('click', function() {
+        closePopup();
+        localStorage.setItem('visited', 'true');
     });
-  </script>
+
+    // Check if it's the user's first visit
+    if (!localStorage.getItem('visited')) {
+        showPopup();
+    }
+});
+
+</script>
+</body>
 </html>
