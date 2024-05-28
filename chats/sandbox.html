@@ -35,35 +35,15 @@
     <button id="close-popup">Close</button>
 </div>
 
-<script>document.addEventListener('DOMContentLoaded', function() {
-    var popup = document.querySelector('.welcome-popup');
-    var overlay = document.querySelector('.overlay');
-    var closeButton = document.getElementById('close-popup');
-
-    // Function to show the popup
-    function showPopup() {
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-    }
-
-    // Function to hide the popup
-    function closePopup() {
-        popup.style.display = 'none';
-        overlay.style.display = 'none';
-    }
-
-    // Event listener for the close button
-    closeButton.addEventListener('click', function() {
-        closePopup();
-        localStorage.setItem('visited', 'true');
-    });
-
-    // Check if it's the user's first visit
-    if (!localStorage.getItem('visited')) {
-        showPopup();
-    }
-});
-
+<script><script
+  src="https://cdn.kustomerapp.com/chat-web/widget.js"
+  data-kustomer-api-key='eyJhbGciOiJub25lIn0.eyJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdfQ.'
+></script>
+<script>
+  Kustomer.start({
+    brandId: '60529dc139029675a234b145'
+  });
+</script>
 </script>
 </body>
 </html>
