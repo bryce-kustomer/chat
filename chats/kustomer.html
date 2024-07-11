@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <title>Kustomer Home</title>
 </head>
 
@@ -15,37 +15,41 @@
     <a class="pricing_button" href="/chat/chats/pricing">Pricing page ></a><br>
     <a class="pricing_button" href="/chat/chats/demo">Demo page ></a>
 
-    <div class="description"><br><br>This page has a default asistant. Navigate to the other pages to see more specific language  .</div>
+    <div class="description"><br><br>This page has a default asistant. Navigate to the other pages to see more specific
+        language .</div>
 </body>
-<script
-  src="https://cdn.kustomerapp.com/chat-web/widget.js"
-  data-kustomer-api-key='eyJhbGciOiJub25lIn0.eyJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdfQ.'
-></script>
-    <script>
+<script src="https://cdn.kustomerapp.com/chat-web/widget.js"
+    data-kustomer-api-key='eyJhbGciOiJub25lIn0.eyJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdfQ.'></script>
+<script>
     Kustomer.start({
-brandId: '667d58f9ff76a7118aa60140'  }, function () {
-        Kustomer.addListener('onConversationCreate', (res) => {
-            Kustomer.describeConversation({
-                conversationId: res.conversationId,
-                customAttributes: {
-                    chatPageStr: "".concat(document.href),
-                    chatPreviousPageStr: "".concat(document.referrer),
-                    chatTimeZoneStr: Intl.DateTimeFormat().resolvedOptions().timeZone
+        brandId: '667d58f9ff76a7118aa60140',
+        hideNewConversationButtonOnHistory: true
+    }, function () {
+        Kustomer.addListener('onOpen', (res) => {
+            Kustomer.getOpenConversations((conversations, error) => {
+                //if current conversations exist, open to existing conversation
+                if(conversations[0] && conversations[0].conversationId !== null){
+                    console.log(conversations[0].conversationId);
+                    Kustomer.openConversationById({
+                        conversationId: `${conversations[0].conversationId}`
+                    }, (response, error) => {
+                        if (error) {
+                            console.error(error);
+                        } else {
+                            console.log('Successfully opened conversation');
+                        }
+                    });
+                } else {
+                console.log('none');
+                Kustomer.createConversation()
                 }
-            });
+                
         });
-
-
-        const onOpenHandler = function () {
-            console.log('Widget was closed');
-        }
-
-        Kustomer.addListener('onClose', onOpenHandler);
- 
-
-
     });
+})
 
 </script>
 
 </html>
+
+
