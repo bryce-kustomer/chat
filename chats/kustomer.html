@@ -23,7 +23,7 @@
         Kustomer.addListener('onOpen', (res) => {
             Kustomer.getOpenConversations((conversations, error) => {
                 //if current conversations exist, open to existing conversation
-                if(conversations[0] && conversations[0].conversationId !== null){
+                if (conversations[0] && conversations[0].conversationId !== null) {
                     console.log(conversations[0].conversationId);
                     Kustomer.openConversationById({
                         conversationId: `${conversations[0].conversationId}`
@@ -35,16 +35,14 @@
                         }
                     });
                 } else {
-                console.log('none');
-                Kustomer.createConversation(  message: "👋 Hi there. What questions can I answer?")
+                    console.log('none');
+                    Kustomer.createConversation({ message: "👋 Hi there. What questions can I answer?" })
                 }
-                
+
+            });
         });
-    });
-})
+    })
 
 </script>
 
 </html>
-
-
