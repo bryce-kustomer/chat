@@ -7,12 +7,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <title>Kustomer Home - AI</title>
+    <title>Kustomer</title>
+    <style>
+        .instructions {
+            font-size: 15px;
+            font-family: 'Helvetica Neue';
+        }
+
+        .title {
+            font-size: 25px;
+            font-family: 'Helvetica Neue';
+        }
+
+        .container {
+            width: 75%;
+            margin: 0 auto;
+            padding-top: 25px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Kustomer.com Chat testing</h1>
+    <div class="container">
+        <h2 class='title'>Kustomer.com Chatbot Testing</h2>
+        <div class='instructions'>This is an internal testing site for the Kustomer.com chatbot. Please do not share
+            this link with any clients.<br><br> <strong>*** Internal testing only ***</strong> </div>
+    </div>
 </body>
+
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
     data-kustomer-api-key='eyJhbGciOiJub25lIn0.eyJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdfQ.'></script>
 <script>
@@ -35,14 +58,13 @@
                         }
                     });
                 } else {
-                    console.log('none');
+                    var key = localStorage['kustomer-chat-tracking-token']
+                    console.log(key);
                     Kustomer.createConversation()
                 }
-
             });
         });
     })
-
 </script>
 
 </html>
