@@ -32,7 +32,8 @@
     <div class="container">
         <h2 class='title'>Kustomer.com Chatbot Testing</h2>
         <div class='instructions'>This is an internal testing site for the Kustomer.com chatbot. Please do not share
-            this link with any clients.<br><br> <strong>*** Internal testing only ***</strong> <br><br>The link to fill out the feedback form will show once you start the chat. </div>
+            this link with any clients.<br><br> <strong>*** Internal testing only ***</strong> <br><br>The link to fill
+            out the feedback form will show once you start the chat. </div>
     </div>
 </body>
 
@@ -47,7 +48,6 @@
             Kustomer.getOpenConversations((conversations, error) => {
                 //if current conversations exist, open to existing conversation
                 if (conversations[0] && conversations[0].conversationId !== null) {
-                    console.log(conversations[0].conversationId);
                     Kustomer.openConversationById({
                         conversationId: `${conversations[0].conversationId}`
                     }, (response, error) => {
@@ -59,11 +59,22 @@
                     });
                 } else {
                     var key = localStorage['kustomer-chat-tracking-token']
-                    console.log(key);
-                    Kustomer.createConversation()
+                    Kustomer.createConversation();                    
                 }
             });
         });
+
+        Kustomer.addListener('onConversationCreate', (res) => {
+            Kustomer.describeConversation({
+                conversationId: res.conversationId,
+                customAttributes: {
+                    pageUrlStr: "".concat(document.location.href)
+                }
+            });
+        });
+
+
+
     })
 </script>
 
