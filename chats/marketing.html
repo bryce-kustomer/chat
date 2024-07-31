@@ -30,7 +30,7 @@
 
 <body>
     <div class="container">
-        <h2 class='title'>Kustomer.com Chatbot Staging</h2>
+        <h2 class='title'>Kustomer.com Chatbot Testing</h2>
         <div class='instructions'>This is an internal testing site for the Kustomer.com chatbot. Please do not share
             this link with any clients.<br><br> <strong>*** Internal testing only ***</strong> <br><br>The link to fill
             out the feedback form will show once you start the chat. </div>
@@ -38,10 +38,10 @@
 </body>
 
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-    data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWEyNTA0MTNlOWZhN2MzMjNmNjhjNSIsInVzZXIiOiI2NmFhMjUwM2FkMDRmOTMwNTlhMmNmZWQiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNjZhYTI1MDNhZDA0ZjkzMDU5YTJjZmVkIn0.2zIh3nCXWOgnv5QAGNMxpfOa7dZ5tu4S9FyDxjVFtds'></script>
+    data-kustomer-api-key='eyJhbGciOiJub25lIn0.eyJvcmciOiI2MDUyOWRiOWI3OTM0MjFhYzRlNDIxZmYiLCJvcmdOYW1lIjoia3VzdG9tZXItc2FuZGJveCIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdfQ.'></script>
 <script>
     Kustomer.start({
-        brandId: '602585ec0546eb60aff536d0',
+        brandId: '667d58f9ff76a7118aa60140',
         hideNewConversationButtonOnHistory: true
     }, function () {
         Kustomer.addListener('onOpen', (res) => {
@@ -58,6 +58,7 @@
                         }
                     });
                 } else {
+                    var key = localStorage['kustomer-chat-tracking-token']
                     Kustomer.createConversation();                    
                 }
             });
