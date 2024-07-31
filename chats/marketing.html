@@ -4,30 +4,78 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>Marketing chat update - </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <title>Kustomer</title>
+    <style>
+        .instructions {
+            font-size: 15px;
+            font-family: 'Helvetica Neue';
+        }
+
+        .title {
+            font-size: 25px;
+            font-family: 'Helvetica Neue';
+        }
+
+        .container {
+            width: 75%;
+            margin: 0 auto;
+            padding-top: 25px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Kustomer.com</h1>
+    <div class="container">
+        <h2 class='title'>Kustomer.com Chatbot Testing</h2>
+        <div class='instructions'>This is an internal testing site for the Kustomer.com chatbot. Please do not share
+            this link with any clients.<br><br> <strong>*** Internal testing only ***</strong> <br><br>The link to fill
+            out the feedback form will show once you start the chat. </div>
+    </div>
 </body>
+
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
     data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU'></script>
 <script>
     Kustomer.start({
-        assistantId: '64adfe4361c5242329961d7c'
+        brandId: '602585ec0546eb60aff536d0',
+        hideNewConversationButtonOnHistory: true
     }, function () {
+        Kustomer.addListener('onOpen', (res) => {
+            Kustomer.getOpenConversations((conversations, error) => {
+                //if current conversations exist, open to existing conversation
+                if (conversations[0] && conversations[0].conversationId !== null) {
+                    Kustomer.openConversationById({
+                        conversationId: `${conversations[0].conversationId}`
+                    }, (response, error) => {
+                        if (error) {
+                            console.error(error);
+                        } else {
+                            console.log('Successfully opened conversation');
+                        }
+                    });
+                } else {
+                    var key = localStorage['kustomer-chat-tracking-token']
+                    Kustomer.createConversation();                    
+                }
+            });
+        });
+
         Kustomer.addListener('onConversationCreate', (res) => {
             Kustomer.describeConversation({
                 conversationId: res.conversationId,
                 customAttributes: {
-                    chatPageStr: "".concat(document.title),
-                    chatPreviousPageStr: "".concat(document.referrer)
+                    chatPageStr: "".concat(document.location.href)
                 }
             });
         });
-    });
 
+
+
+    })
 </script>
 
 </html>
