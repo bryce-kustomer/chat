@@ -30,16 +30,47 @@
 
 <body>
     <div class="container">
-        <h2 class='title'>Kustomer.com Chatbot Testing - Staging</h2>
-        <div class='instructions'>****NOV!A***</div>
+        <h2 class="title">Kustomer.com Chatbot Testing - Staging</h2>
+        <div class="instructions">****NOV!A***</div>
     </div>
 </body>
 
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-    data-kustomer-api-key="eyJhbGciOiJub25lIn0.eyJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJyb2xlcyI6WyJvcmcudHJhY2tpbmciXX0."></script>
+    data-kustomer-api-key="eyJhbGciOiJub25lIn0.eyJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJyb2xlcyI6WyJvcmcudHJhY2tpbmciXX0.">
+</script>
 <script>
-    
-  Kustomer.start({brandId:"670fcefaccacebeef3331738",hideNewConversationButtonOnHistory:true},function(){Kustomer.addListener("onOpen",e=>{Kustomer.getOpenConversations((e,o)=>{if(e[0]&&e[0].conversationId!==null){Kustomer.openConversationById({conversationId:`${e[0].conversationId}`},(e,o)=>{if(o){console.error(o)}else{console.log("Successfully opened conversation")}})}else{var n=localStorage["kustomer-chat-tracking-token"];Kustomer.createConversation()}})});Kustomer.addListener("onConversationCreate",e=>{Kustomer.describeConversation({conversationId:e.conversationId,customAttributes:{chatPageStr:"".concat(document.location.href)}})})});
+    Kustomer.start({
+        brandId: "670fcefaccacebeef3331738",
+        hideNewConversationButtonOnHistory: true
+    }, function () {
+        Kustomer.addListener("onOpen", e => {
+            Kustomer.getOpenConversations((conversations, error) => {
+                if (conversations[0] && conversations[0].conversationId !== null) {
+                    Kustomer.openConversationById({
+                        conversationId: `${conversations[0].conversationId}`
+                    }, (e, error) => {
+                        if (error) {
+                            console.error(error);
+                        } else {
+                            console.log("Successfully opened conversation");
+                        }
+                    });
+                } else {
+                    var trackingToken = localStorage["kustomer-chat-tracking-token"];
+                    Kustomer.createConversation();
+                }
+            });
+        });
+
+        Kustomer.addListener("onConversationCreate", e => {
+            Kustomer.describeConversation({
+                conversationId: e.conversationId,
+                customAttributes: {
+                    chatPageStr: "".concat(document.location.href)
+                }
+            });
+        });
+    });
 </script>
 
 </html>
