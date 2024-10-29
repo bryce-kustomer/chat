@@ -36,44 +36,10 @@
 </body>
 
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-    data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWEzMTNlNzEzMzQ2NTBhYzk4MDhkZSIsInVzZXIiOiI2NmFhMzEzZWFlODVmMDVhZTE5NmE5OWIiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNjZhYTMxM2VhZTg1ZjA1YWUxOTZhOTliIn0.qEO7VcIQciEiAvV7KZFv0hcTYhdhD1r5076DHzNCC9w'></script>
+    data-kustomer-api-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGU4NmU4ODg0NzcxY2NhZGQ3MWM2OSIsIm9yZyI6IjU3MGZhZDlkOTAwMWJjMTAwMDE2M2IyOCIsImN1c3RvbWVyIjoiNjcwZmQzZDcxODJjY2QzODJmODBlNDUwIiwidmVyaWZpZWQiOmZhbHNlLCJleHAiOjE3MzE1OTcyODgsImF1ZCI6InVybjpjb25zdW1lciIsImlzcyI6InVybjphcGkifQ.fDV7RPmQ_otupNviYe4aRd0kd_1m4oN-gtF4Nlh3_LE"></script>
 <script>
-    Kustomer.start({
-        brandId: '602585ec0546eb60aff536d0',
-        hideNewConversationButtonOnHistory: true
-    }, function () {
-        Kustomer.addListener('onOpen', (res) => {
-            Kustomer.getOpenConversations((conversations, error) => {
-                //if current conversations exist, open to existing conversation
-                if (conversations[0] && conversations[0].conversationId !== null) {
-                    Kustomer.openConversationById({
-                        conversationId: `${conversations[0].conversationId}`
-                    }, (response, error) => {
-                        if (error) {
-                            console.error(error);
-                        } else {
-                            console.log('Successfully opened conversation');
-                        }
-                    });
-                } else {
-                    var key = localStorage['kustomer-chat-tracking-token']
-                    Kustomer.createConversation();                    
-                }
-            });
-        });
-
-        Kustomer.addListener('onConversationCreate', (res) => {
-            Kustomer.describeConversation({
-                conversationId: res.conversationId,
-                customAttributes: {
-                    chatPageStr: "".concat(document.location.href)
-                }
-            });
-        });
-
-
-
-    })
+    
+  Kustomer.start({brandId:"670fcefaccacebeef3331738",hideNewConversationButtonOnHistory:true},function(){Kustomer.addListener("onOpen",e=>{Kustomer.getOpenConversations((e,o)=>{if(e[0]&&e[0].conversationId!==null){Kustomer.openConversationById({conversationId:`${e[0].conversationId}`},(e,o)=>{if(o){console.error(o)}else{console.log("Successfully opened conversation")}})}else{var n=localStorage["kustomer-chat-tracking-token"];Kustomer.createConversation()}})});Kustomer.addListener("onConversationCreate",e=>{Kustomer.describeConversation({conversationId:e.conversationId,customAttributes:{chatPageStr:"".concat(document.location.href)}})})});
 </script>
 
 </html>
