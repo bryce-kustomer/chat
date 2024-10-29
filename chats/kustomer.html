@@ -31,12 +31,12 @@
 <body>
     <div class="container">
         <h2 class='title'>Kustomer.com Chatbot Testing - Staging</h2>
-        <div class='instructions'>****NOVA***</div>
+        <div class='instructions'>****NOV!A***</div>
     </div>
 </body>
 
 <script src="https://cdn.kustomerapp.com/chat-web/widget.js"
-    data-kustomer-api-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGU4NmU4ODg0NzcxY2NhZGQ3MWM2OSIsIm9yZyI6IjU3MGZhZDlkOTAwMWJjMTAwMDE2M2IyOCIsImN1c3RvbWVyIjoiNjcwZmQzZDcxODJjY2QzODJmODBlNDUwIiwidmVyaWZpZWQiOmZhbHNlLCJleHAiOjE3MzE1OTcyODgsImF1ZCI6InVybjpjb25zdW1lciIsImlzcyI6InVybjphcGkifQ.fDV7RPmQ_otupNviYe4aRd0kd_1m4oN-gtF4Nlh3_LE"></script>
+    data-kustomer-api-key="eyJhbGciOiJub25lIn0.eyJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJyb2xlcyI6WyJvcmcudHJhY2tpbmciXX0."></script>
 <script>
     
   Kustomer.start({brandId:"670fcefaccacebeef3331738",hideNewConversationButtonOnHistory:true},function(){Kustomer.addListener("onOpen",e=>{Kustomer.getOpenConversations((e,o)=>{if(e[0]&&e[0].conversationId!==null){Kustomer.openConversationById({conversationId:`${e[0].conversationId}`},(e,o)=>{if(o){console.error(o)}else{console.log("Successfully opened conversation")}})}else{var n=localStorage["kustomer-chat-tracking-token"];Kustomer.createConversation()}})});Kustomer.addListener("onConversationCreate",e=>{Kustomer.describeConversation({conversationId:e.conversationId,customAttributes:{chatPageStr:"".concat(document.location.href)}})})});
