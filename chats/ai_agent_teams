@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Ai Agent Teams Test</title>
+</head>
+
+<body>
+<h1>Fit/Gap for AI Agent (POTENTIAL FUTURE STATE)</h1>
+
+<div class="fit">
+    <h2>Fit</h2>
+    <ul>
+        <li><strong>Must</strong> respond conversationally to users' questions.</li>
+        <li><strong>Must</strong> have a source of knowledge that is separate from Support KB articles (e.g., “Workflow
+            Helpers”).</li>
+        <li><strong>Must</strong> have the ability to provide the AI with custom instructions so it can tailor its
+            messages to a specific audience.</li>
+        <li><strong>Should</strong> show typing indicators when “thinking” about an answer.</li>
+    </ul>
+</div>
+
+<div class="gap">
+    <h2>Gap</h2>
+    <ul>
+        <li><strong>Should</strong> greet the customer when they start a chat with a first outbound message (AI Agent
+            only responds with the customer once the first message has been sent).</li>
+            <li><strong>Should</strong> allow us to call functions that can be used in Workflows to kick off process
+                automations (e.g., when a user intends to talk to sales, schedule a demo, or talk to support, we use a
+                workflow to send them messages, notify the necessary stakeholders in Slack, and route accordingly).</li>
+                <li><strong>Should</strong> show the "bot" word beneath the AI agent messages per legal team’s recommendation.
+                </li>
+                <li><strong>Should</strong> keep a conversation open without marking it done arbitrarily, preventing a user from
+                    spamming us by creating new conversations.</li>
+        <li><strong>Could</strong> use proactive messaging to pop up a message bubble that greets a customer when they
+            visit the site.</li>
+            <li><strong>Could</strong> allow non-public data sources to be uploaded to ensure data stays private.</li>
+    </ul>
+</div>
+
+
+
+</body>
+<script src="https://cdn.kustomerapp.com/chat-web/widget.js"
+    data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU'></script>
+<script>
+  
+    Kustomer.start(
+            {
+                brandId: "670fcefaccacebeef3331738",
+                hideNewConversationButtonOnHistory: false
+            },
+            function () {
+                 var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
+                 console.log(chatPlaceholder);
+                chatPlaceholder.placeholder = 'How can we help?'
+                // Listener for when the chat widget opens
+                Kustomer.addListener("onOpen", () => {
+                    var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
+                    console.log(chatPlaceholder);
+                    chatPlaceholder.placeholder = 'How can we help?'
+                    Kustomer.getOpenConversations((conversations, error) => {
+                        if (conversations[0] && conversations[0].conversationId !== null) {
+                            Kustomer.openConversationById(
+                                { conversationId: `${conversations[0].conversationId}` },
+                                (result, openError) => {
+                                    if (openError) {
+                                        console.error(openError);
+                                    } else {
+                                        console.log("Successfully opened conversation");
+                                    }
+                                }
+                            );
+                        } else {
+                            const trackingToken = localStorage["kustomer-chat-tracking-token"];
+                            Kustomer.createConversation();
+                        }
+                    });
+                });
+
+                // Listener for when a new conversation is created
+                Kustomer.addListener("onConversationCreate", (event) => {
+                    Kustomer.describeConversation({
+                        conversationId: event.conversationId,
+                        customAttributes: {
+                            chatPageStr: document.location.href
+                        }
+                    });
+                });
+            }
+        );
+
+   
+</script>
+
+</html>
