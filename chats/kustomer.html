@@ -56,7 +56,6 @@
                  var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
                 // Listener for when the chat widget opens
                 Kustomer.addListener("onOpen", () => {
-                    var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
                     Kustomer.getOpenConversations((conversations, error) => {
                         if (conversations[0] && conversations[0].conversationId !== null) {
                             Kustomer.openConversationById(
