@@ -23,7 +23,6 @@
                 hideNewConversationButtonOnHistory: false
             },
             function () {
-                 var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
                 // Listener for when the chat widget opens
                 Kustomer.addListener("onOpen", () => {
                     Kustomer.getOpenConversations((conversations, error) => {
