@@ -17,13 +17,45 @@
     data-kustomer-api-key='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmVhN2Y4NGJjMTQyMDA4ZWU5MDc5MSIsInVzZXIiOiI1ZTZlYTdmOGEyNTVjZTAwMTk4ZWIwYWMiLCJvcmciOiI1NzBmYWQ5ZDkwMDFiYzEwMDAxNjNiMjgiLCJvcmdOYW1lIjoia3VzdG9tZXIiLCJ1c2VyVHlwZSI6Im1hY2hpbmUiLCJwb2QiOiJwcm9kMSIsInJvbGVzIjpbIm9yZy50cmFja2luZyJdLCJhdWQiOiJ1cm46Y29uc3VtZXIiLCJpc3MiOiJ1cm46YXBpIiwic3ViIjoiNWU2ZWE3ZjhhMjU1Y2UwMDE5OGViMGFjIn0.fTvACf80ldOYCjdGJLg3qS27XSJOzJ3kM9NlaP4PLuU'></script>
 <script>
   
-       Kustomer.start(
-        {
-            brandId: "600722af36009ee6f15194a4",
-            hideNewConversationButtonOnHistory: false
-        }
-    );
+    Kustomer.start(
+            {
+                brandId: "600722af36009ee6f15194a4",
+                hideNewConversationButtonOnHistory: false
+            },
+            function () {
+                 var chatPlaceholder = document.getElementById('messageThreadInputTextArea');
+                // Listener for when the chat widget opens
+                Kustomer.addListener("onOpen", () => {
+                    Kustomer.getOpenConversations((conversations, error) => {
+                        if (conversations[0] && conversations[0].conversationId !== null) {
+                            Kustomer.openConversationById(
+                                { conversationId: `${conversations[0].conversationId}` },
+                                (result, openError) => {
+                                    if (openError) {
+                                        console.error(openError);
+                                    } else {
+                                        console.log("Successfully opened conversation");
+                                    }
+                                }
+                            );
+                        } else {
+                            const trackingToken = localStorage["kustomer-chat-tracking-token"];
+                            Kustomer.createConversation();
+                        }
+                    });
+                });
 
+                // Listener for when a new conversation is created
+                Kustomer.addListener("onConversationCreate", (event) => {
+                    Kustomer.describeConversation({
+                        conversationId: event.conversationId,
+                        customAttributes: {
+                            chatPageStr: document.location.href
+                        }
+                    });
+                });
+            }
+        );
    
 </script>
 
