@@ -35,6 +35,7 @@ h1 {
 .description {
  font-family: 'Roboto', sans-serif;
     font-weight: bold !important;
+  font-size: 15px;
 }
 body {
     background-color: white;
