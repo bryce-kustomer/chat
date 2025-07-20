@@ -12,9 +12,9 @@
     }
     #gameArea {
       position: relative;
-      height: 200px;
+      height: 589px;
       width: 100vw;
-      background: linear-gradient(to bottom, #b3e5fc, #fff);
+      background: url('map.png') center center/cover no-repeat;
     }
     .sprite, .chest {
       position: absolute;
@@ -32,42 +32,54 @@
 </head>
 <body>
   <div id="gameArea">
-    <img id="character" class="sprite" src="https://i.imgur.com/v4lDfLL.png" />
+    <img id="character" class="sprite" src="walk1.png" />
     <img class="chest" src="https://i.imgur.com/mw8NFnP.png" />
   </div>
-  <audio id="chime" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+
+  <audio id="chime" src="coin.mp3"></audio>
 
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database-compat.js"></script>
   <script>
-    // Replace this config with yours from Firebase
+    // Firebase config
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyAkprKEwK4IqbK47vRkxA_5R9l84HMX-yo",
+      authDomain: "coleman-quest.firebaseapp.com",
+      databaseURL: "https://coleman-quest-default-rtdb.firebaseio.com",
+      projectId: "coleman-quest",
+      storageBucket: "coleman-quest.firebasestorage.app",
+      messagingSenderId: "1002239421984",
+      appId: "1:1002239421984:web:b45f25ffd51d9536d85645",
+      measurementId: "G-LEW29E8X1J"
     };
-
+  
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-
+  
     const character = document.getElementById("character");
     const chime = document.getElementById("chime");
-    let currentMoveCount = 0;
-
     const STEP_WIDTH = 50;
-
+  
+    let currentMoveCount = 0;
+    let currentFrame = 1;
+    const totalFrames = 6;
+  
+    // Setup Firebase listener immediately
     db.ref("game/moveCount").on("value", snapshot => {
       const newCount = snapshot.val();
       if (typeof newCount === "number" && newCount !== currentMoveCount) {
         const dx = (newCount - currentMoveCount) * STEP_WIDTH;
         const currentLeft = parseInt(character.style.left || "0");
         character.style.left = (currentLeft + dx) + "px";
+  
+        // Advance to next walking frame
+        currentFrame++;
+        if (currentFrame > totalFrames) currentFrame = 1;
+        character.src = `walk${currentFrame}.png`;
+  
         currentMoveCount = newCount;
-        chime.play();
+  
+        chime.play().catch(err => console.warn("Chime blocked:", err));
       }
     });
   </script>
