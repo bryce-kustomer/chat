@@ -11,15 +11,21 @@
       margin: 0;
     }
     #gameArea {
-      position: relative;
-      height: 589px;
-      width: 100vw;
-      background: url('map.png') center center/cover no-repeat;
+ 
+      display: block;
+    }
+    #backgroundImage {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
     .sprite, .chest {
       position: absolute;
       bottom: 0;
       height: 100px;
+      z-index: 1;
     }
     .sprite {
       left: 0;
@@ -46,6 +52,7 @@
   <div id="overlay">Tap anywhere to begin</div>
 
   <div id="gameArea">
+    <img id="backgroundImage" src="map.png" alt="Map Background" />
     <img id="character" class="sprite" src="chase.png" />
   </div>
 
@@ -81,12 +88,10 @@
     function unlockAudioAndStart() {
       overlay.style.display = "none";
 
-      // Unlock audio by trying to play/pause
       chime.play().catch(() => {});
       chime.pause();
       chime.currentTime = 0;
 
-      // Now that audio is unlocked, attach Firebase listener
       db.ref("game/moveCount").on("value", snapshot => {
         const newCount = snapshot.val();
         if (typeof newCount === "number" && newCount !== currentMoveCount) {
@@ -94,7 +99,6 @@
           const currentLeft = parseInt(character.style.left || "0");
           character.style.left = (currentLeft + dx) + "px";
 
-          // Advance to next walking frame
           currentFrame++;
           if (currentFrame > totalFrames) currentFrame = 1;
           character.src = `chase.png`;
@@ -106,7 +110,6 @@
       });
     }
 
-    // Trigger unlock on first interaction (tap or click)
     ["click", "touchstart"].forEach(event => {
       document.body.addEventListener(event, unlockAudioAndStart, { once: true });
     });
