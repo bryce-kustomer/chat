@@ -46,8 +46,7 @@
   <div id="overlay">Tap anywhere to begin</div>
 
   <div id="gameArea">
-    <img id="character" class="sprite" src="walk1.png" />
-    <img class="chest" src="treasure_chest.png" />
+    <img id="character" class="sprite" src="chase.png" />
   </div>
 
   <audio id="chime" src="coin.mp3"></audio>
@@ -98,7 +97,7 @@
           // Advance to next walking frame
           currentFrame++;
           if (currentFrame > totalFrames) currentFrame = 1;
-          character.src = `walk${currentFrame}.png`;
+          character.src = `chase.png`;
 
           currentMoveCount = newCount;
 
