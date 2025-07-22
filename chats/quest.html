@@ -25,7 +25,7 @@
     }
     .sprite, .chest {
       position: absolute;
-      bottom: 225px;
+      bottom: 15px;
       height: 160px;
       z-index: 1;
     }
@@ -51,16 +51,14 @@
 
     #topHud {
       position: absolute;
-      top: 10px;
+      top: 0px;
       width: 100%;
       display: inline-flex;
       justify-content: space-around;
-      /* padding: 0 30px; */
-      font-size: 45px;
+      font-size: 25px;
       color: #ffffff;
       z-index: 5;
-      /* margin-top: 109px; */
-      margin-top: 70px;
+      margin-top: 40px;
     }
     .top-block {
       text-align: center;
@@ -68,7 +66,7 @@
     }
     .top-block strong {
       display: block;
-      font-size: 16px;
+      font-size: 25px;
       color: #FFD700;
     }
 
@@ -103,10 +101,10 @@
   <div id="gameArea" style="position: relative; width: 100vw; height: 100vh;">
     <div id="topHud">
       <div class="top-block">
-        Chase<br><strong>0000000</strong>
+        Chase<br><strong id="steps">00000</strong>
       </div>
       <div class="top-block">
-        Adventure Ba
+        World<strong id="footerTime">Adventure<br>Bay</strong>
       </div>
       <div class="top-block">
         Time<br><strong id="footerTime">1000</strong>
@@ -156,20 +154,24 @@
       chime.currentTime = 0;
 
       db.ref("game/moveCount").on("value", snapshot => {
-        const newCount = snapshot.val();
-        if (typeof newCount === "number" && newCount !== currentMoveCount) {
-          const dx = (newCount - currentMoveCount) * STEP_WIDTH;
-          const currentLeft = parseInt(character.style.left || "0");
-          character.style.left = (currentLeft + dx) + "px";
+      const newCount = snapshot.val();
+      if (typeof newCount === "number" && newCount !== currentMoveCount) {
+        const dx = (newCount - currentMoveCount) * STEP_WIDTH;
+        const currentLeft = parseInt(character.style.left || "0");
+        character.style.left = (currentLeft + dx) + "px";
 
-          currentFrame++;
-          if (currentFrame > totalFrames) currentFrame = 1;
-          character.src = `https://bryce-kustomer.github.io/chat/chats/chase.png`;
+        currentFrame++;
+        if (currentFrame > totalFrames) currentFrame = 1;
+        character.src = `https://bryce-kustomer.github.io/chat/chats/chase.png`;
 
-          currentMoveCount = newCount;
+        currentMoveCount = newCount;
 
-          chime.play().catch(err => console.warn("Chime blocked:", err));
-        }
+        // Update steps with leading zeros
+        const stepsElem = document.getElementById("steps");
+        stepsElem.textContent = String(currentMoveCount).padStart(5, "0");
+
+        chime.play().catch(err => console.warn("Chime blocked:", err));
+      }
       });
     }
 
